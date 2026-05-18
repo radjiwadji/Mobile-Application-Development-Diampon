@@ -1,14 +1,23 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
 
 export default function Profile() {
+  const [name, setName] = useState('');
+
   return (
     <View style={styles.container}>
       <Image
         source={require('../assets/images/profile.jpg')}
         style={styles.photo}
       />
-      <Text style={styles.name}>Radji Wadji</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Type your name..."
+        placeholderTextColor="#999"
+        value={name}
+        onChangeText={setName}
+      />
+      <Text style={styles.greeting}>Hello, {name || 'friend'}!</Text>
       <Text style={styles.course}>Mobile App Development · CS126</Text>
       <Text style={styles.bio} numberOfLines={3}>
         Passionate mobile app student building interactive experiences with React
@@ -30,7 +39,25 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    marginBottom: 12,
+    marginBottom: 16,
+  },
+  input: {
+    width: '80%',
+    maxWidth: 300,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    backgroundColor: '#fff',
+    fontSize: 16,
+    marginTop: 8,
+  },
+  greeting: {
+    fontSize: 20,
+    fontWeight: '700',
+    marginTop: 14,
+    color: '#111',
   },
   name: {
     fontSize: 18,
